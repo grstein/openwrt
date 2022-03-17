@@ -870,6 +870,17 @@ define Device/tplink_tl-wr941hp-v1
 endef
 TARGET_DEVICES += tplink_tl-wr941hp-v1
 
+define Device/tplink_tl-wr941hp-v2
+  $(Device/tplink-8mlzma)
+  SOC := tp9343
+  DEVICE_MODEL := TL-WR941HP
+  DEVICE_VARIANT := v2
+  TPLINK_BOARD_ID := TLWR941HPV2
+  SUPPORTED_DEVICES += tl-wr941hp-v2
+  KERNEL_INITRAMFS := kernel-bin | append-dtb | lzma | uImageArcher lzma
+endef
+TARGET_DEVICES += tplink_tl-wr941hp-v2
+
 define Device/tplink_wbs210-v1
   $(Device/tplink-safeloader-okli)
   SOC := ar9344

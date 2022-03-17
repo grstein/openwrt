@@ -160,24 +160,12 @@
 
 &eth1 {
 	status = "okay";
-	
+
 	mtd-mac-address = <&mib0 0x8>;
 };
 
 &wmac {
 	status = "okay";
-
-	mtd-cal-data = <&art 0x1000>;
-	nvmem-cells = <&macaddr_config_8>;
-	nvmem-cell-names = "mac-address";
-};
-
-&config {
-	compatible = "nvmem-cells";
-	#address-cells = <1>;
-	#size-cells = <1>;
-
-	macaddr_config_8: macaddr@8 {
-		reg = <0x8 0x6>;
-	};
+	
+	mtd-mac-address = <&mib0 0x8>;
 };
