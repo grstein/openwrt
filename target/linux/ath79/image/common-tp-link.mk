@@ -93,3 +93,11 @@ define Device/tplink-safeloader-okli
 	loader-okli $(1) 12288
   KERNEL_INITRAMFS := $$(KERNEL)
 endef
+
+define Build/uImageArcher
+	mkimage -A $(LINUX_KARCH) \
+		-O linux -T multi -C $(1) -a $(KERNEL_LOADADDR) \
+		-e $(if $(KERNEL_ENTRY),$(KERNEL_ENTRY),$(KERNEL_LOADADDR)) \
+		-n '$(call toupper,$(LINUX_KARCH)) OpenWrt Linux-$(LINUX_VERSION)' -d $@ $@.new
+	@mv $@.new $@
+endef
