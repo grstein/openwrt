@@ -1,0 +1,45 @@
+--- a/src/tplink-safeloader.c
++++ b/src/tplink-safeloader.c
+@@ -2183,6 +2183,42 @@ static struct device_info boards[] = {
+ 		.last_sysupgrade_partition = "file-system",
+ 	},
+ 
++	/** Firmware layout for the TL-WR941HP v2 */
++	{
++		.id     = "TL-WR941HP-V2",
++		.vendor = "",
++		.support_list =
++			"SupportList:\n"
++			"{product_name:TL-WR941HP,product_ver:2.0.0,special_id:00000000}\n"
++			"{product_name:TL-WR941HP,product_ver:2.0.0,special_id:42520000}\n",
++		.part_trail = 0x00,
++		.soft_ver = SOFT_VER_DEFAULT,
++
++		.partitions = {
++			{"fs-uboot", 0x00000000, 0x00010000},
++			{"file-system", 0x00010000, 0x006c0000},
++			{"os-image", 0x006d0000, 0x00110000},
++			{"default-mac", 0x007e0000, 0x00000020},
++			{"pin", 0x007e0020, 0x00000010},
++			{"support-list", 0x007e0030, 0x0000016c},
++			{"rf-test", 0x007e019c, 0x00000004},
++			{"soft-version", 0x007e01a0, 0x00000100},
++			{"product-info", 0x007e02a0, 0x000002a0},
++			{"partition-table", 0x007e0540, 0x00000f00},
++			{"device-id", 0x007e1440, 0x00000100},
++			{"profile", 0x007e1540, 0x00000ac0},
++			{"default-config", 0x007e2000, 0x00002000},
++			{"user-config", 0x007e4000, 0x00004000},
++			{"certificate", 0x007e8000, 0x00004000},
++			{"qos-db", 0x7d0000, 0x00004000},
++			{"radio", 0x007f0000, 0x00010000},
++			{NULL, 0, 0}
++		},
++
++		.first_sysupgrade_partition = "os-image",
++		.last_sysupgrade_partition = "file-system",
++	},
++	
+ 	/** Firmware layout for the TL-WR942N V1 */
+ 	{
+ 		.id     = "TLWR942NV1",
